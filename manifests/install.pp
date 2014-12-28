@@ -12,10 +12,13 @@ class sickbeard::install() inherits sickbeard::params {
     group    => $sickbeard::user,
   }
 
-  file { '/etc/init.d/sickbeard':
-    ensure => present,
-    source => 'puppet:///modules/sickbeard/debian.init',
-    mode   => '0755',
+  # TODO make this work on non-Debian platforms
+  if $::osfamily == 'Debian' {
+    file { '/etc/init.d/sickbeard':
+      ensure => present,
+      source => 'puppet:///modules/sickbeard/debian.init',
+      mode   => '0755',
+    }
   }
 
   file { $sickbeard::data_dir:
