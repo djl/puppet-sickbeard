@@ -4,12 +4,18 @@ class sickbeard::install() inherits sickbeard::params {
     ensure => present,
   }
 
+  user { $sickbeard::user:
+    ensure => present,
+    shell  => $sickbeard::user_shell,
+  }
+
   vcsrepo { $sickbeard::install_dir:
     ensure   => present,
     provider => git,
     source   => $sickbeard::repo,
     owner    => $sickbeard::user,
     group    => $sickbeard::user,
+    require  => User[$sickbeard::user]
   }
 
   # TODO make this work on non-Debian platforms
@@ -26,6 +32,7 @@ class sickbeard::install() inherits sickbeard::params {
     mode   => '0755',
     owner  => $sickbeard::user,
     group  => $sickbeard::user,
+    require  => User[$sickbeard::user]
   }
 
   file { $sickbeard::shows_dir:
@@ -33,5 +40,6 @@ class sickbeard::install() inherits sickbeard::params {
     mode   => '0755',
     owner  => $sickbeard::user,
     group  => $sickbeard::user,
+    require  => User[$sickbeard::user]
   }
 }

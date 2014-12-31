@@ -1,29 +1,32 @@
 # == Class: sickbeard
 #
-# Install sickbeard
+# Install Sick Beard
 #
 # === Parameters
 #
 # [*install_dir*]
-#   Where sickbeard should be installed
+#   Where Sick Beard should be installed
 #
 # [*data_dir*]
-#   The directory containing data created by sickbeard
+#   The directory containing data created by Sick Beard
 #
 # [*user*]
-#   The user sickbeard should run as
+#   The user Sick Beard should run as
+#
+# [*user_shell*]
+#   The Sick Beard user's shell
 #
 # [*address*]
-#   The address sickbeard should listening on
+#   The address Sick Beard should listening on
 #
 # [*port*]
-#   The port number sickbeard should be running on
+#   The port number Sick Beard should be running on
 #
 # [*pidfile*]
-#   The pidfile for the sickbeard process
+#   The pidfile for the Sick Beard process
 #
 # [*repo*]
-#   The upstream git repo from which sickbeard will be installed
+#   The upstream git repo from which Sick Beard will be installed
 #
 # === Examples
 #
