@@ -25,8 +25,8 @@ the service to start at boot.
 ### What sickbeard affects
 
 * Checks out sickbeard from git
-* Creates an init script (Debian only)
-* Creates defaults under `/etc/default/sickbeard` (Debian only)
+* Creates an init script
+* Creates defaults under `/etc/{default,sysconfig}/sickbeard`
 
 
 ### Beginning with sickbeard

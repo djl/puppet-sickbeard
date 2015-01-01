@@ -18,11 +18,10 @@ class sickbeard::install() inherits sickbeard::params {
     require  => User[$sickbeard::user]
   }
 
-  # TODO make this work on non-Debian platforms
-  if $::osfamily == 'Debian' {
+  if $::osfamily =~ /^Debian|RedHat/ {
     file { '/etc/init.d/sickbeard':
       ensure => present,
-      source => 'puppet:///modules/sickbeard/debian.init',
+      source => "puppet:///modules/sickbeard/${::osfamily}.init",
       mode   => '0755',
     }
   }

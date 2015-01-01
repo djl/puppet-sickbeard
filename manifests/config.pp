@@ -1,11 +1,14 @@
 # == Class: sickbeard::config
 class sickbeard::config {
-  # TODO make this work on non-Debian platforms
-  if $::osfamily == 'Debian' {
-    file { '/etc/default/sickbeard':
-      ensure  => present,
-      content => template('sickbeard/debian.default.erb'),
-      mode    => '0644',
-    }
+  case $::osfamily {
+    'Debian': { $config_file = '/etc/default/sickbeard' }
+    'RedHat': { $config_file = '/etc/sysconfig/sickbeard' }
+    default: { fail("Unsupported OS: ${::osfamily}") }
+  }
+
+  file { $config_file:
+    ensure  => present,
+    content => template('sickbeard/config.erb'),
+    mode    => '0644',
   }
 }
