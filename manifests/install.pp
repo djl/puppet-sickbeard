@@ -4,6 +4,10 @@ class sickbeard::install() inherits sickbeard::params {
     ensure => present,
   }
 
+  package { 'git':
+    ensure => present,
+  }
+
   user { $sickbeard::user:
     ensure => present,
     shell  => $sickbeard::user_shell,
@@ -15,7 +19,7 @@ class sickbeard::install() inherits sickbeard::params {
     source   => $sickbeard::repo,
     owner    => $sickbeard::user,
     group    => $sickbeard::user,
-    require  => User[$sickbeard::user]
+    require  => [ User[$sickbeard::user], Package['git'] ]
   }
 
   if $::osfamily =~ /^Debian|RedHat/ {
@@ -27,18 +31,18 @@ class sickbeard::install() inherits sickbeard::params {
   }
 
   file { $sickbeard::data_dir:
-    ensure => directory,
-    mode   => '0755',
-    owner  => $sickbeard::user,
-    group  => $sickbeard::user,
-    require  => User[$sickbeard::user]
+    ensure  => directory,
+    mode    => '0755',
+    owner   => $sickbeard::user,
+    group   => $sickbeard::user,
+    require => User[$sickbeard::user]
   }
 
   file { $sickbeard::shows_dir:
-    ensure => directory,
-    mode   => '0755',
-    owner  => $sickbeard::user,
-    group  => $sickbeard::user,
-    require  => User[$sickbeard::user]
+    ensure  => directory,
+    mode    => '0755',
+    owner   => $sickbeard::user,
+    group   => $sickbeard::user,
+    require => User[$sickbeard::user]
   }
 }
