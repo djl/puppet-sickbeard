@@ -1,12 +1,6 @@
 # == Class: sickbeard::install
 class sickbeard::install() inherits sickbeard::params {
-  package { 'python-cheetah':
-    ensure => present,
-  }
-
-  package { 'git':
-    ensure => present,
-  }
+  ensure_packages(['git', 'python', 'python-cheetah'])
 
   user { $sickbeard::user:
     ensure => present,
