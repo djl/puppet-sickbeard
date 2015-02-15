@@ -16,6 +16,9 @@
 # [*user_shell*]
 #   The Sick Beard user's shell
 #
+# [*manage_user*]
+#   Whether Puppet should manage this user
+#
 # [*address*]
 #   The address Sick Beard should listening on
 #
@@ -43,11 +46,15 @@ class sickbeard (
   $install_dir = $sickbeard::params::install_dir,
   $data_dir    = $sickbeard::params::data_dir,
   $user        = $sickbeard::params::user,
+  $user_shell  = $sickbeard::params::user_shell,
+  $manage_user = $sickbeard::params::manage_user,
   $address     = $sickbeard::params::address,
   $port        = $sickbeard::params::port,
   $pidfile     = $sickbeard::params::pidfile,
   $repo        = $sickbeard::params::repo,
 ) inherits sickbeard::params {
+
+  validate_bool($manage_user)
 
   class { 'sickbeard::install': } ->
   class { 'sickbeard::config': } ~>

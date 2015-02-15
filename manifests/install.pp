@@ -2,9 +2,11 @@
 class sickbeard::install() inherits sickbeard::params {
   ensure_packages(['git', 'python', 'python-cheetah'])
 
-  user { $sickbeard::user:
-    ensure => present,
-    shell  => $sickbeard::user_shell,
+  if ($sickbeard::manage_user) {
+      user { $sickbeard::user:
+        ensure => present,
+        shell  => $sickbeard::user_shell,
+      }
   }
 
   vcsrepo { $sickbeard::install_dir:
