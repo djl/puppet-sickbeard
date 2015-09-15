@@ -6,6 +6,7 @@ class sickbeard::install() inherits sickbeard::params {
       user { $sickbeard::user:
         ensure => present,
         shell  => $sickbeard::user_shell,
+        home   => $sickbeard::data_dir,
       }
   }
 
