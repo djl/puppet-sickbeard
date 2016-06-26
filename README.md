@@ -25,8 +25,7 @@ the service to start at boot.
 ### What sickbeard affects
 
 * Checks out sickbeard from git
-* Creates an init script
-* Creates defaults under `/etc/{default,sysconfig}/sickbeard`
+* Installs systemd unit file
 
 
 ### Beginning with sickbeard
