@@ -1,4 +1,4 @@
-SICKBEARD_USER=<%= @user %>
-SICKBEARD_HOME=<%= @install_dir %>
-SICKBEARD_DATA=<%= @data_dir %>
-SICKBEARD_PIDFILE=<%= @pidfile %>
+SICKBEARD_USER=<%= scope['::sickbeard::user'] %>
+SICKBEARD_HOME=<%= scope['::sickbeard::install_dir'] %>
+SICKBEARD_DATA=<%= scope['::sickbeard::data_dir'] %>
+SICKBEARD_PIDFILE=<%= scope['::sickbeard::pidfile'] %>
