@@ -1,14 +1,8 @@
 # == Class: sickbeard::config
 class sickbeard::config {
-  case $::osfamily {
-    'Debian': { $config_file = '/etc/default/sickbeard' }
-    'RedHat': { $config_file = '/etc/sysconfig/sickbeard' }
-    default: { fail("Unsupported OS: ${::osfamily}") }
-  }
-
-  file { $config_file:
+  file { '/lib/systemd/system/sickbeard.service':
     ensure  => present,
-    content => template('sickbeard/config.erb'),
+    content => template('sickbeard/sickbeard.service.erb'),
     mode    => '0644',
   }
 }

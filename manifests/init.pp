@@ -19,15 +19,6 @@
 # [*manage_user*]
 #   Whether Puppet should manage this user
 #
-# [*address*]
-#   The address Sick Beard should listening on
-#
-# [*port*]
-#   The port number Sick Beard should be running on
-#
-# [*pidfile*]
-#   The pidfile for the Sick Beard process
-#
 # [*repo*]
 #   The upstream git repo from which Sick Beard will be installed
 #
@@ -48,9 +39,6 @@ class sickbeard (
   $user        = $sickbeard::params::user,
   $user_shell  = $sickbeard::params::user_shell,
   $manage_user = $sickbeard::params::manage_user,
-  $address     = $sickbeard::params::address,
-  $port        = $sickbeard::params::port,
-  $pidfile     = $sickbeard::params::pidfile,
   $repo        = $sickbeard::params::repo,
 ) inherits sickbeard::params {
 

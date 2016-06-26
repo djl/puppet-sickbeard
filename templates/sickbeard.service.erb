@@ -1,0 +1,13 @@
+[Unit]
+Description=Sick Beard - Internet PVR for your TV Shows
+After=network.target
+
+[Service]
+User=<%= scope['::sickbeard::user'] %>
+ExecStart=/usr/bin/python <%= scope['::sickbeard::install_dir'] %>/SickBeard.py -q --nolaunch --datadir=<%= scope['::sickbeard::data_dir'] %>
+Restart=on-failure
+SuccessExitStatus=2 3 4
+RestartForceExitStatus=3 4
+
+[Install]
+WantedBy=multi-user.target

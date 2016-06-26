@@ -19,14 +19,6 @@ class sickbeard::install() inherits sickbeard::params {
     require  => [ User[$sickbeard::user], Package['git'] ]
   }
 
-  if $::osfamily =~ /^Debian|RedHat/ {
-    file { '/etc/init.d/sickbeard':
-      ensure => present,
-      source => "puppet:///modules/sickbeard/${::osfamily}.init",
-      mode   => '0755',
-    }
-  }
-
   file { $sickbeard::data_dir:
     ensure  => directory,
     mode    => '0755',
